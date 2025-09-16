@@ -1,38 +1,98 @@
-.App {
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.header {
   text-align: center;
+  margin-bottom: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  color: #ff6b6b;
+  margin: 0;
+  font-size: 2.5em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mango-form {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.question-block {
+  margin-bottom: 30px;
+}
+
+.question-text {
+  font-size: 1.2em;
+  color: #2d3436;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.radio-group {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+}
+
+.radio-item {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.radio-item:hover {
+  background-color: #fff3e0;
+}
+
+.radio-item input[type="radio"] {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  accent-color: #ff6b6b;
+}
+
+.radio-item label {
+  font-size: 1.1em;
+  color: #2d3436;
+  cursor: pointer;
+}
+
+button {
+  background-color: #ff6b6b;
   color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: block;
+  margin: 30px auto 0;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #ff5252;
+  transform: translateY(-2px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Add a subtle gradient background to the page */
+body {
+  background: linear-gradient(135deg, #fff9f2 0%, #ffe8cc 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
 }
