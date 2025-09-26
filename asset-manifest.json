@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/Mangometro/static/js/main.3fdfcd6c.js",
+    "main.js": "/Mangometro/static/js/main.47523263.js",
     "service-worker.js": "/Mangometro/service-worker.js",
     "index.html": "/Mangometro/index.html",
-    "main.3fdfcd6c.js.map": "/Mangometro/static/js/main.3fdfcd6c.js.map"
+    "main.47523263.js.map": "/Mangometro/static/js/main.47523263.js.map"
   },
   "entrypoints": [
-    "static/js/main.3fdfcd6c.js"
+    "static/js/main.47523263.js"
   ]
 }
