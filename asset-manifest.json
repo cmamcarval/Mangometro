@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Mangometro/static/css/main.15a3a3ee.css",
-    "main.js": "/Mangometro/static/js/main.acdb0d62.js",
+    "main.css": "/Mangometro/static/css/main.f3b46548.css",
+    "main.js": "/Mangometro/static/js/main.f0dff76f.js",
     "service-worker.js": "/Mangometro/service-worker.js",
     "index.html": "/Mangometro/index.html",
-    "main.15a3a3ee.css.map": "/Mangometro/static/css/main.15a3a3ee.css.map",
-    "main.acdb0d62.js.map": "/Mangometro/static/js/main.acdb0d62.js.map"
+    "main.f3b46548.css.map": "/Mangometro/static/css/main.f3b46548.css.map",
+    "main.f0dff76f.js.map": "/Mangometro/static/js/main.f0dff76f.js.map"
   },
   "entrypoints": [
-    "static/css/main.15a3a3ee.css",
-    "static/js/main.acdb0d62.js"
+    "static/css/main.f3b46548.css",
+    "static/js/main.f0dff76f.js"
   ]
 }
