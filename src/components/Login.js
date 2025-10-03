@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -9,13 +10,29 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          navigate('/mangometro');
+        }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/mangometer');
+      // Navigation will be handled by the useEffect above
     } catch (error) {
-      setError('Invalid email or password');
+      console.error('Login error:', error);
+      setError(
+        error.code === 'auth/invalid-credential' 
+          ? 'Email ou senha inválidos' 
+          : 'Erro ao fazer login. Tente novamente.'
+      );
     }
   };
 
@@ -49,3 +66,5 @@ function Login() {
 }
 
 export default Login;
+
+

@@ -38,6 +38,7 @@ h1 {
   color: #2d3436;
   margin-bottom: 15px;
   font-weight: 600;
+  text-align: center; /* Add this line to center the text */
 }
 
 .radio-group {
@@ -161,14 +162,23 @@ button:hover {
   transform: translateY(-2px);
 }
 
-button[type="submit"] {
+/* Change submit button styles to be specific to mango-form */
+.mango-form button[type="submit"] {
   opacity: 0.5;
   pointer-events: none;
 }
 
-button[type="submit"].enabled {
+.mango-form button[type="submit"].enabled {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* Add specific styles for login form button */
+.login-form button[type="submit"] {
+  opacity: 1;
+  pointer-events: auto;
+  width: 100%;
+  margin-top: 20px;
 }
 
 button[type="submit"]:disabled {
@@ -185,14 +195,21 @@ body {
   padding: 20px;
 }
 
+/* ...existing styles... */
+
 .location-selectors {
   margin-bottom: 20px;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .location-dropdown {
-  padding: 8px 12px;
+  width: 100%;
+  appearance: none; /* Remove default select styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 12px;
   border: 2px solid #ff6b6b;
   border-radius: 8px;
   background-color: white;
@@ -200,16 +217,14 @@ body {
   color: #2d3436;
   cursor: pointer;
   min-width: 150px;
-}
-
-.location-dropdown:hover {
-  border-color: #ff5252;
-}
-
-.location-dropdown:focus {
-  outline: none;
-  border-color: #ff5252;
-  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+  height: 42px;
+  line-height: 38px; /* height - (2 * border) */
+  box-sizing: border-box;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff6b6b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
 }
 
 .error-message {
@@ -253,3 +268,127 @@ body {
   border-color: #ff5252;
   box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.2em;
+  color: #ff6b6b;
+}
+
+/* ...existing styles... */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 10px; /* Add padding to ensure margin is visible */
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 95%;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 10px; /* Add margin around popup */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content h2 {
+  color: #ff6b6b;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.checkbox-label:hover {
+  background-color: #fff3e0;
+  border-color: #ff6b6b;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #ff6b6b;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.popup-buttons button {
+  min-width: 120px;
+  margin: 0;
+}
+
+.popup-buttons button.secondary {
+  background-color: transparent;
+  border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+}
+
+.popup-buttons button.secondary:hover {
+  background-color: #fff3e0;
+}
+
+.select-locations-btn {
+  width: 100%;
+  text-align: left;
+  background: white;
+  border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 0 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 150px;
+  height: 42px;
+  line-height: 38px;
+  box-sizing: border-box;
+}
+
+.select-locations-btn:disabled {
+  border-color: #cccccc;
+  color: #999999;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+}
+
+.selected-locations {
+  flex: 1;
+  width: 100%;
+}
+
+/* ...rest of existing styles... */
