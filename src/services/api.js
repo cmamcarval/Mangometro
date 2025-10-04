@@ -1,4 +1,5 @@
-const API_URL = process.env.REACT_APP_API_URL || 'https://api.escalar.pt';
+const API_URL = process.env.REACT_APP_API_URL;
+const REACT_APP_AUTH = process.env.REACT_APP_AUTH; 
 
 export const submitMangometerData = async (data) => {
   try {
@@ -6,7 +7,7 @@ export const submitMangometerData = async (data) => {
       method: 'POST',
       headers: {
         'accept': 'application/json',
-        'Authorization': 'Bearer my_ultra_secret_token_that_is_totally_secure',
+        'Authorization': `Bearer ${REACT_APP_AUTH}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)

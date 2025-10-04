@@ -38,7 +38,10 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Mangómetro</h1>
+      <div className="header">
+        <img src="./logo1.png" alt="Mango" className="logo" />
+        <h1>Mangómetro</h1>
+      </div>
       <form onSubmit={handleSubmit} className="login-form">
         {error && <div className="error-message">{error}</div>}
         <div className="form-group">

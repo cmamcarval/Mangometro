@@ -7,8 +7,8 @@ const urlsToCache = [
   '/static/js/main.bundle.js',
   '/static/css/main.bundle.css',
   '/manifest.json',
-  '/mango-192.png',
-  '/mango-512.png'
+  '/logo1-192.png',
+  '/logo1-512.png'
 ];
 
 self.addEventListener('install', event => {

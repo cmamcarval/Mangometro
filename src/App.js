@@ -16,6 +16,8 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [showHelpRock, setShowHelpRock] = useState(false);
+  const [showHelpTemp, setShowHelpTemp] = useState(false);
 
   const locations = {
     "Atlântida": [
@@ -90,7 +92,7 @@ function App() {
   const formatSubmissionData = (data) => {
     return {
       user_id: auth.currentUser.email, // Use Firebase auth user ID
-      table_name: "remove_me",
+      table_name: "fieldData",
       payload: {
         assessment: {
           date: data.date,
@@ -145,9 +147,11 @@ function App() {
   }, [formData]);
 
   return (
+    <>
+    <div className="background"></div>
     <div className="container">
       <div className="header">
-        <span className="logo" role="img" aria-label="mango">🥭</span>
+        <img src="./logo1.png" alt="Mango" className="logo" />
         <h1>Mangómetro</h1>
       </div>
       
@@ -183,195 +187,221 @@ function App() {
         </div>
         
         <div className="question-block">
-          <p className="question-text">Quando foste escalar?</p>
-          <div className="button-radio-group">
-            <div className={`button-radio ${formData.date === dates.twoDaysAgo ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="date-1" 
-                name="date" 
-                value={dates.twoDaysAgo}
-                onChange={handleChange} 
-                required 
-              />
-              <label htmlFor="date-1">2 dias atrás</label>
-            </div>
-            <div className={`button-radio ${formData.date === dates.yesterday ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="date-2" 
-                name="date" 
-                value={dates.yesterday}
-                onChange={handleChange} 
-              />
-              <label htmlFor="date-2">Ontem</label>
-            </div>
-            <div className={`button-radio ${formData.date === dates.today ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="date-3" 
-                name="date" 
-                value={dates.today}
-                onChange={handleChange} 
-              />
-              <label htmlFor="date-3">Hoje</label>
+          <div className="question-card">
+            <p className="question-text">QUANDO FOSTE ESCALAR?</p>
+            <div className="button-radio-group">
+              <div className={`button-radio ${formData.date === dates.twoDaysAgo ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="date-1" 
+                  name="date" 
+                  value={dates.twoDaysAgo}
+                  onChange={handleChange} 
+                  required 
+                />
+                <label htmlFor="date-1">2 dias atrás</label>
+              </div>
+              <div className={`button-radio ${formData.date === dates.yesterday ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="date-2" 
+                  name="date" 
+                  value={dates.yesterday}
+                  onChange={handleChange} 
+                />
+                <label htmlFor="date-2">Ontem</label>
+              </div>
+              <div className={`button-radio ${formData.date === dates.today ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="date-3" 
+                  name="date" 
+                  value={dates.today}
+                  onChange={handleChange} 
+                />
+                <label htmlFor="date-3">Hoje</label>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="question-block">
-          <p className="question-text">Como estava a rocha?</p>
-          <div className="button-radio-group">
-            <div className={`button-radio ${formData.question1 === "1" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q1-1" 
-                name="question1" 
-                value="1" 
-                onChange={handleChange} 
-                required 
-              />
-              <label htmlFor="q1-1">Péssimo</label>
+          <div className="question-card">
+            <div className="question-header">
+              <p className="question-text">COMO ESTAVA A ROCHA?</p>
+              <button 
+                type="button" 
+                className="help-button"
+                onClick={() => setShowHelpRock(true)}
+                >
+                  ?
+              </button>
             </div>
-            <div className={`button-radio ${formData.question1 === "2" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q1-2" 
-                name="question1" 
-                value="2" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q1-2">Mau</label>
-            </div>
-            <div className={`button-radio ${formData.question1 === "3" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q1-3" 
-                name="question1" 
-                value="3" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q1-3">Ok se secares presas</label>
-            </div>
-            <div className={`button-radio ${formData.question1 === "4" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q1-4" 
-                name="question1" 
-                value="4" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q1-4">Seco</label>
-            </div>
-            <div className={`button-radio ${formData.question1 === "5" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q1-5" 
-                name="question1" 
-                value="5" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q1-5">Perfeito</label>
-            </div>
-          </div>
-
-          <p className="question-text">Sensação térmica?</p>
-          <div className="button-radio-group">
-            <div className={`button-radio ${formData.question2 === "1" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q2-1" 
-                name="question2" 
-                value="1" 
-                onChange={handleChange} 
-                required 
-              />
-              <label htmlFor="q2-1">Sauna</label>
-            </div>
-            <div className={`button-radio ${formData.question2 === "2" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q2-2" 
-                name="question2" 
-                value="2" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q2-2">Tive de esperar que arrefecesse</label>
-            </div>
-            <div className={`button-radio ${formData.question2 === "3" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q2-3" 
-                name="question2" 
-                value="3" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q2-3">Bom</label>
-            </div>
-            <div className={`button-radio ${formData.question2 === "4" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q2-4" 
-                name="question2" 
-                value="4" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q2-4">Perfeito</label>
+            <div className="button-radio-group1">
+              <div className={`button-radio ${formData.question1 === "1" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q1-1" 
+                  name="question1" 
+                  value="1" 
+                  onChange={handleChange} 
+                  required 
+                />
+                <label htmlFor="q1-1">Péssimo</label>
+              </div>
+              <div className={`button-radio ${formData.question1 === "2" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q1-2" 
+                  name="question1" 
+                  value="2" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q1-2">Mau</label>
+              </div>
+              <div className={`button-radio ${formData.question1 === "3" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q1-3" 
+                  name="question1" 
+                  value="3" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q1-3">Ok se secares presas</label>
+              </div>
+              <div className={`button-radio ${formData.question1 === "4" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q1-4" 
+                  name="question1" 
+                  value="4" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q1-4">Seco</label>
+              </div>
+              <div className={`button-radio ${formData.question1 === "5" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q1-5" 
+                  name="question1" 
+                  value="5" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q1-5">Perfeito</label>
+              </div>
             </div>
           </div>
 
-          <p className="question-text">Como estava o mar?</p>
-          <div className="button-radio-group">
-            <div className={`button-radio ${formData.question3 === "1" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q3-1" 
-                name="question3" 
-                value="1" 
-                onChange={handleChange} 
-                required 
-              />
-              <label htmlFor="q3-1">Tempestuoso, não dá para aceder</label>
+          <div className="question-card">
+            <div className="question-header">
+              <p className="question-text">SENSAÇÃO TÉRMICA?</p>
+              <button 
+                type="button" 
+                className="help-button"
+                onClick={() => setShowHelpTemp(true)}
+              >
+                ?
+              </button>
             </div>
-            <div className={`button-radio ${formData.question3 === "2" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q3-2" 
-                name="question3" 
-                value="2" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q3-2">Muito agitado, acesso com cuidado</label>
+            <div className="button-radio-group2">
+              <div className={`button-radio ${formData.question2 === "1" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q2-1" 
+                  name="question2" 
+                  value="1" 
+                  onChange={handleChange} 
+                  required 
+                />
+                <label htmlFor="q2-1">Sauna</label>
+              </div>
+              <div className={`button-radio ${formData.question2 === "2" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q2-2" 
+                  name="question2" 
+                  value="2" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q2-2">Tive de esperar que arrefecesse</label>
+              </div>
+              <div className={`button-radio ${formData.question2 === "3" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q2-3" 
+                  name="question2" 
+                  value="3" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q2-3">Bom</label>
+              </div>
+              <div className={`button-radio ${formData.question2 === "4" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q2-4" 
+                  name="question2" 
+                  value="4" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q2-4">Perfeito</label>
+              </div>
             </div>
-            <div className={`button-radio ${formData.question3 === "3" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q3-3" 
-                name="question3" 
-                value="3" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q3-3">Agitado, arricas a molhar-te</label>
-            </div>
-            <div className={`button-radio ${formData.question3 === "4" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q3-4" 
-                name="question3" 
-                value="4" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q3-4">Tranquilo</label>
-            </div>
-            <div className={`button-radio ${formData.question3 === "5" ? "selected" : ""}`}>
-              <input 
-                type="radio" 
-                id="q3-5" 
-                name="question3" 
-                value="5" 
-                onChange={handleChange} 
-              />
-              <label htmlFor="q3-5">Sopa</label>
+          </div>
+
+          <div className="question-card">
+            <p className="question-text">COMO ESTAVA O MAR?</p>
+            <div className="button-radio-group3">
+              <div className={`button-radio ${formData.question3 === "1" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q3-1" 
+                  name="question3" 
+                  value="1" 
+                  onChange={handleChange} 
+                  required 
+                />
+                <label htmlFor="q3-1">Tempestuoso, não dá para aceder</label>
+              </div>
+              <div className={`button-radio ${formData.question3 === "2" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q3-2" 
+                  name="question3" 
+                  value="2" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q3-2">Muito agitado, acesso com cuidado</label>
+              </div>
+              <div className={`button-radio ${formData.question3 === "3" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q3-3" 
+                  name="question3" 
+                  value="3" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q3-3">Agitado, arricas a molhar-te</label>
+              </div>
+              <div className={`button-radio ${formData.question3 === "4" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q3-4" 
+                  name="question3" 
+                  value="4" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q3-4">Tranquilo</label>
+              </div>
+              <div className={`button-radio ${formData.question3 === "5" ? "selected" : ""}`}>
+                <input 
+                  type="radio" 
+                  id="q3-5" 
+                  name="question3" 
+                  value="5" 
+                  onChange={handleChange} 
+                />
+                <label htmlFor="q3-5">Sopa</label>
+              </div>
             </div>
           </div>
         </div>
@@ -400,7 +430,46 @@ function App() {
           location={formData.location}
         />
       )}
+
+      {showHelpRock && (
+        <>
+          <div className="help-overlay" onClick={() => setShowHelpRock(false)} />
+          <div className="help-popup">
+            <p className="help-popup-title">Grip</p>
+            <p></p>
+            <p><b>Péssimo:</b> Nem valia a pena escalar porque as presas estavam húmidas/molhadas. Não escalamos no(s) sector(es) por causa da húmidade. </p>
+            <p></p>
+            <p><b>Mau:</b> Estava bastante húmido. Deu para escalar baixando o grau e pondo muito magnésio nas presas mas estavam más condições. </p>
+            <p></p>
+            <p><b>Ok depois de secar as presas:</b> Um dia razoável, limpando e pondo magnésio nas presas deu para escalar e aproveitar. </p>
+            <p></p>
+            <p><b>Seco:</b> As condições estavam boas para tentar vias no limite mas não estavam perfeitas. </p>
+            <p></p>
+            <p><b>Perfeito:</b> O grip está incrível sendo difícil imaginar como é que as condições poderiam estar melhores. Um dia igual aos melhores dias que te lembras. </p>
+            <button onClick={() => setShowHelpRock(false)}>Fechar</button>
+          </div>
+        </>
+      )}
+
+      {showHelpTemp && (
+        <>
+          <div className="help-overlay" onClick={() => setShowHelpTemp(false)} />
+          <div className="help-popup">
+          <p className="help-popup-title">Sensação Térmica</p>
+            <p></p>
+            <p><b>Sauna:</b> Estava muito quente, passei mal com o calor. A janela de tempo com uma temperatura razoável para escalar foi muito curta.</p>
+            <p></p>
+            <p><b>Tive de esperar que arrefecesse:</b> Estava calor e tive de esperar que a temperatura baixasse para escalar.</p>
+            <p></p>
+            <p><b>Bom:</b> Estava uma boa temperatura para tentar vias no limite e aproveitar o dia apesar de não estar perfeito.</p>
+            <p></p>
+            <p><b>Perfeito:</b> A temperatura não podia estar melhor, a temperatura ideal para encadear e ter um bom dia de escalada.</p>
+            <button onClick={() => setShowHelpTemp(false)}>Fechar</button>
+          </div>
+        </>
+      )}
     </div>
+    </>
   );
 }
 
